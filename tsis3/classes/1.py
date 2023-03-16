@@ -1,13 +1,16 @@
 class Capital:
     
     def __init__(self):
+        
         self.low = ""
     
     def getString(self):
+        
         self.low = input()
 
 
     def printString(self):
+        
         print(self.low.upper())
     
 
