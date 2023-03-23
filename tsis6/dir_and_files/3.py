@@ -5,8 +5,11 @@ path = input()
 path1 = r'/Users/bakustar2005/Documents/pp2/tsis6/dir_and_files/demofile.txt'
 
 if os.path.exists(path):
+    
     x = os.path.split(path)
+    
     print("Filename:", x[1])
     print("Directory portion:", x[0])
+
 else:
     print("Path does not exists")
