@@ -6,7 +6,7 @@ def even_gen(max):
     n = 1
     while n <= max:
         if n % 2 == 0:
-            yield f"{n} " 
+            yield f"{n}, " 
         n += 1
 
 n = int(input())

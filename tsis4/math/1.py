@@ -3,6 +3,7 @@
 import math
 
 def degree_to_radian(degree):
+    
     return (pi / 180) * degree
 
 pi = math.pi

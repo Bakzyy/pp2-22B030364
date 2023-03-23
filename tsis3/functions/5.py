@@ -1,3 +1,5 @@
+#Write a function that accepts string from user and print all permutations of that string.
+
 def get_permutation(s, k = 0):
     if k == len(s):
         print("".join(s))

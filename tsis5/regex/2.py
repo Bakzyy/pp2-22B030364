@@ -9,6 +9,7 @@ pattern2 = r"a[b]{3}"
 
 for i in text:
     if re.search(pattern1, i) or re.search(pattern2, i):
+        
         print(i)
 
 #or

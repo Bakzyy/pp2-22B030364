@@ -1,3 +1,6 @@
+#Write a program able to play the "Guess the number" - game, where the number to be guessed is randomly chosen between 1 and 20. 
+#This is how it should work when run in a terminal:
+
 import random 
 
 name = str(input("Hello! What is your name?\n"))

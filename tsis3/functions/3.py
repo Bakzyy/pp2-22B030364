@@ -9,6 +9,7 @@ def solve(numheads, numlegs):
         rabbit = 35 - x
         
         if 2 * chicken + 4 * rabbit == numlegs:
+            
             return chicken, rabbit
 
 chicken, rabbit = solve(numheads, numlegs)
