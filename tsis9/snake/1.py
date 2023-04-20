@@ -35,6 +35,7 @@ pygame.time.set_timer(INC_SPEED, 1000)  # каждый 1 секунд өткен
 score = 0
 speed = 5
 
+
 class Food(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
