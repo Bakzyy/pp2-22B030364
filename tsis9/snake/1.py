@@ -7,7 +7,7 @@ pygame.init()
  
 #Setting up FPS 
 FPS = 60
-FramePerSec = pygame.time.Clock()
+Clock = pygame.time.Clock()
  
 #Creating colors
 BLUE  = (0, 0, 255)
@@ -19,7 +19,10 @@ WHITE = (255, 255, 255)
 #Other Variables for use in the program
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 800
+
 #Setting up Fonts
+font = pygame.font.SysFont("Verdana", 20)
+
 #Create a white screen 
 screen = pygame.display.set_mode((800,800))
 screen.fill(WHITE)
@@ -29,13 +32,9 @@ pygame.display.set_caption("Game")
 INC_SPEED = pygame.USEREVENT + 1
 pygame.time.set_timer(INC_SPEED, 1000)  # каждый 1 секунд өткенін анықтайды
 
-
 score = 0
 speed = 5
 
-font = pygame.font.SysFont("Verdana", 20)
-
-clock = pygame.time.Clock()
 class Food(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -169,7 +168,6 @@ pygame.time.set_timer(INC_SPEED, 1000)  # каждый 1 секунд өткен
 
 #Game Loop
 while True:
-    clock.tick(30)
     #Cycles through all events occurring  
     for event in pygame.event.get(): 
         if event.type == INC_SPEED and time_on1 == True:  # каждый 1 секнд өткен сайын, жылдамдық += 0,5
@@ -191,7 +189,7 @@ while True:
             elif event.key == pygame.K_DOWN:
                 snake1.dx = 0
                 snake1.dy = speed
-    if snake1.eat(food1.x, food1.y):
+    if snake1.eat(food1.x, food1.y) == True:
         snake1.is_add = True
         food1.generate()
     if snake1.eat1(food2.x, food2.y):
@@ -224,6 +222,6 @@ while True:
     snake1.move()
          
     pygame.display.update()
-    FramePerSec.tick(FPS)
+    Clock.tick(FPS)
     
 pygame.quit()

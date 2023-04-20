@@ -7,7 +7,7 @@ pygame.init()
  
 #Setting up FPS 
 FPS = 60
-FramePerSec = pygame.time.Clock()
+Clock = pygame.time.Clock()
  
 #Creating colors
 BLUE  = (0, 0, 255)
@@ -30,8 +30,8 @@ game_over = font.render("Game Over", True, BLACK)
 background = pygame.image.load("/Users/bakustar2005/Documents/pp2/tsis8/racer/AnimatedStreet.png")
  
 #Create a white screen 
-DISPLAYSURF = pygame.display.set_mode((400, 600))
-DISPLAYSURF.fill(WHITE)
+screen = pygame.display.set_mode((400, 600))
+screen.fill(WHITE)
 pygame.display.set_caption("Game")
  
 class Enemy(pygame.sprite.Sprite):
@@ -97,13 +97,13 @@ while True:
             pygame.quit()
             sys.exit()
  
-    DISPLAYSURF.blit(background, (0,0))
+    screen.blit(background, (0,0))
     scores = font_small.render(str(SCORE), True, BLACK)
-    DISPLAYSURF.blit(scores, (10, 10))
+    screen.blit(scores, (10, 10))
  
     #Moves and Re-draws all Sprites
     for entity in all_sprites:
-        DISPLAYSURF.blit(entity.image, entity.rect)
+        screen.blit(entity.image, entity.rect)
         entity.move()
  
     #To be run if collision occurs between Player and Enemy
@@ -111,8 +111,8 @@ while True:
           pygame.mixer.Sound('/Users/bakustar2005/Documents/pp2/tsis8/racer/crash.wav').play()
           time.sleep(0.5)
                     
-          DISPLAYSURF.fill(RED)
-          DISPLAYSURF.blit(game_over, (30, 250))
+          screen.fill(RED)
+          screen.blit(game_over, (30, 250))
            
           pygame.display.update()
           for entity in all_sprites:
@@ -123,4 +123,4 @@ while True:
           sys.exit()        
          
     pygame.display.update()
-    FramePerSec.tick(FPS)
+    Clock.tick(FPS)

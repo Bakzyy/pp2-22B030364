@@ -42,21 +42,24 @@ while not done:
         if event.type == pg.KEYDOWN and event.key == pg.K_UP:
             pg.mixer.music.unpause()
         if event.type == pg.KEYDOWN and event.key == pg.K_RIGHT:
-            music =  True
+            music = True
             queue(music)
         if event.type == pg.KEYDOWN and event.key == pg.K_LEFT:
             music = False
             queue(music)    
-    screen.fill((225, 225, 225))
+    screen.fill((255, 255, 255))
     font = pg.font.Font(None, 40)
-    text1 = font.render('1.Maga_Poslednij_roman', True, (255, 100, 180))
-    text2 = font.render('2.vitya-ak-v-x-v-prince-na-2-ih-mp3.', True, (0, 255, 255))
+    text1 = font.render('1.Maga - Последний Роман', True, (255, 0, 0))
+    text2 = font.render('2.VSXV PRINCE - На 2их', True, (0, 255, 255))
     text3 = font.render('3.Bakr - Очи', True, (255, 255, 0))
-    text4 = font.render('   <<  -----  >>', True, (240, 0, 255))
+    text4 = font.render('   <<  -----  >>', True, (0, 0, 255))
     screen.blit(text1, [30, 100])
     screen.blit(text2, [30, 140])
     screen.blit(text3, [30, 180])
     screen.blit(text4, [150, 220])
+    
     pg.display.flip()
 
 pg.quit()
+
+exit()

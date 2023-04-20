@@ -7,7 +7,7 @@ pygame.init()
  
 #Setting up FPS 
 FPS = 60
-FramePerSec = pygame.time.Clock()
+Clock = pygame.time.Clock()
  
 #Creating colors
 BLUE  = (0, 0, 255)
@@ -61,44 +61,60 @@ class Enemy1(pygame.sprite.Sprite):
             self.rect.top = 0
             self.rect.center = (random.randint(40, SCREEN_WIDTH - 40), 0)
 
-class Coins(pygame.sprite.Sprite):
+class Coin(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.size = (30, 30)
-        self.pos = (random.randint(50, 750), 550)
-        self.rect = pygame.Rect(self.pos[0], self.pos[1], self.size[0], self.size[1])
+        self.pos = (random.randint(30, 370), 0)
+        self.rect = pygame.Rect(self.pos[0], self.pos[1], 30, 30)
         self.image = pygame.transform.scale(pygame.image.load('/Users/bakustar2005/Documents/pp2/tsis9/racer/coin.jpg'), self.size)
 
-    def move(self):
-        pass
     def move(self):
         self.rect.move_ip(0,3)
         if (self.rect.top > 600):
             self.rect.top = 0
-            self.rect.center = (random.randint(40, SCREEN_WIDTH - 40), 0)
+            self.rect.center = (random.randint(30, SCREEN_WIDTH - 30), 0)
 
     def hit(self):
         self.rect.top = 0
-        self.rect.center = (random.randint(40, SCREEN_WIDTH - 40), 0)
+        self.rect.center = (random.randint(30, SCREEN_WIDTH - 30), 0)
+
+class Coin1(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.size = (50, 50)
+        self.pos = (random.randint(50, 350), 0)
+        self.rect = pygame.Rect(self.pos[0], self.pos[1], 50, 50)
+        self.image = pygame.transform.scale(pygame.image.load('/Users/bakustar2005/Documents/pp2/tsis9/racer/coin.jpg'), self.size)
+
+    def move(self):
+        self.rect.move_ip(0,3)
+        if (self.rect.top > 600):
+            self.rect.top = 0
+            self.rect.center = (random.randint(50, SCREEN_WIDTH - 50), 0)
+
+    def hit(self):
+        self.rect.top = 0
+        self.rect.center = (random.randint(50, SCREEN_WIDTH - 50), 0)        
  
 class Player(pygame.sprite.Sprite):
     def __init__(self):   # бастапқы қалпын құру
         super().__init__() 
         self.image = pygame.image.load("/Users/bakustar2005/Documents/pp2/tsis9/racer/Player.png")
         self.rect = self.image.get_rect()
-        self.rect.center = (160, 520)  # біздіңт машинаның бастапқы орны
+        self.rect.center = (160, 520)  # біздің машинаның бастапқы орны
         
     def move(self):   # машинаның қозғалуы
 
-        if SCORE != 0 and SCORE % 20 == 0:  # 20 40 60 80 ...
+        if SCORE != 0 and SCORE % 100 == 0:  # 20 40 60 80 ...
             SPEED += 0.5
 
         pressed_keys = pygame.key.get_pressed()  # клавитураның басылғанын анықтау
         
-        if pressed_keys[K_UP]:
-            self.rect.move_ip(0, -5)
-        if pressed_keys[K_DOWN]:
-            self.rect.move_ip(0,5)
+        # if pressed_keys[K_UP]:
+        #     self.rect.move_ip(0, -5)
+        # if pressed_keys[K_DOWN]:
+        #     self.rect.move_ip(0,5)
          
         if self.rect.left > 0:
               if pressed_keys[K_LEFT]:  # солға жылжытады
@@ -110,8 +126,8 @@ class Player(pygame.sprite.Sprite):
 #Setting up Sprites        
 P1 = Player()
 E1 = Enemy()
-C1 = Coins()
-C2 = Coins()
+C1 = Coin()
+C2 = Coin1()
 E2 = Enemy1()
  
 #Creating Sprites Groups
@@ -141,7 +157,6 @@ all_sprites2.add(E2)
 INC_SPEED = pygame.USEREVENT + 1
 pygame.time.set_timer(INC_SPEED, 1000)  # каждый 1 секунд өткенін анықтайды
 
-p=0
 #Game Loop
 while True:
        
@@ -152,8 +167,6 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
-
-
 
 
     screen.blit(background, (0,0))  # жолдың суретін экранға салу
@@ -170,14 +183,10 @@ while True:
         SCORE += 2
         C1.hit()
     
-    # if p==1000:
-        # for entity in all_sprites2:  # цикл арқылы барлық персонажды қозғалтамыз  
-        #         screen.blit(entity.image, entity.rect)
-        #         entity.move()
     for entity in all_sprites2:  # цикл арқылы барлық персонажды қозғалтамыз  
             screen.blit(entity.image, entity.rect)
             entity.move()
-    p+=1
+    
     if pygame.sprite.spritecollideany(C2, players):
         SCORE += 4
         C2.hit()
@@ -205,8 +214,11 @@ while True:
           pygame.display.update()
           for entity in all_sprites:
                 entity.kill() 
+          
           time.sleep(2)
           pygame.quit()
           sys.exit()
+   
     pygame.display.update()
-    FramePerSec.tick(FPS)
+    
+    Clock.tick(FPS)
