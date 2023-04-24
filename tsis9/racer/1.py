@@ -64,10 +64,10 @@ class Enemy1(pygame.sprite.Sprite):
 class Coin(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.size = (30, 30)
-        self.pos = (random.randint(30, 370), 0)
-        self.rect = pygame.Rect(self.pos[0], self.pos[1], 30, 30)
-        self.image = pygame.transform.scale(pygame.image.load('/Users/bakustar2005/Documents/pp2/tsis9/racer/coin.jpg'), self.size)
+        self.size = (50, 50)
+        self.pos = (random.randint(50, 350), 0)
+        self.rect = pygame.Rect(self.pos[0], self.pos[1], 50, 50)
+        self.image = pygame.transform.scale(pygame.image.load('/Users/bakustar2005/Documents/pp2/tsis9/racer/dzhum.png'), self.size)
 
     def move(self):
         self.rect.move_ip(0,3)
@@ -85,7 +85,7 @@ class Coin1(pygame.sprite.Sprite):
         self.size = (50, 50)
         self.pos = (random.randint(50, 350), 0)
         self.rect = pygame.Rect(self.pos[0], self.pos[1], 50, 50)
-        self.image = pygame.transform.scale(pygame.image.load('/Users/bakustar2005/Documents/pp2/tsis9/racer/coin.jpg'), self.size)
+        self.image = pygame.transform.scale(pygame.image.load('/Users/bakustar2005/Documents/pp2/tsis9/racer/dzhum.png'), self.size)
 
     def move(self):
         self.rect.move_ip(0,3)

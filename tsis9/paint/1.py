@@ -106,7 +106,7 @@ def main():
                         pygame.draw.line(screen, color, last_pos, event.pos, radius)
                         last_pos = event.pos # приравниваем начальные координаты к конечным, чтобы точка постоянно обновлялась
                     if figure == 'erase': # если используем ластик, то рисуем черный круг на экране, центр - конечные координаты, а радиус равен 6
-                        pygame.draw.circle(screen, (0, 0, 0), (last_pos[0], last_pos[1]), 6)
+                        pygame.draw.circle(screen, (0, 0, 0), (event.pos[0], event.pos[1]), 6)
                     if figure == 'rectangle': # если фигура - прямоугольник, то обращаемся к функции Rect_pos, которой передаем начальные и конечные координаты, затем выводим наш surface на экран и наконец рисуем прямоугольник на экране заданным цветом согласно функции Rect_pos
                         t = Rect_pos(last_pos[0], last_pos[1], event.pos[0], event.pos[1])
                         screen.blit(work_surf, (0, 0))
@@ -132,7 +132,7 @@ def main():
                         points = [] # чистим наш лист, чтобы при следующей отрисовки он был пустым
                     if figure == 'circle': # если фигура - круг, то сначала выводим наш surface на экран, а затем рисуем круг на экране заданным цветом, центр - начальные координаты, радиус - расстояния между конечными и начальными координатами (формула расстояния между двумя точками)
                         screen.blit(work_surf, (0, 0))
-                        pygame.draw.circle(screen, color, (last_pos[0], last_pos[1]), int(math.sqrt((event.pos[0]-last_pos[0])**2 + (event.pos[1]-last_pos[1])**2)))
+                        pygame.draw.circle(screen, color, (last_pos[0], last_pos[1]), int(math.sqrt((event.pos[0]-last_pos[0]) ** 2 + (event.pos[1]-last_pos[1])**2)))
 
         pygame.display.flip() # обновляем содержимое дисплея игры
 
